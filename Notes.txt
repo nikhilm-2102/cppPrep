@@ -1,0 +1,5 @@
+unique_ptr
+unique_ptr works with single ownership model. Only one pointer at a time can access the resource.
+We can not assign one unique_ptr to another as copy constructor and assignment operator is deleted from the unique_ptr class
+We can move the ownership from one unique_ptr to another using std::move() and this is done because of the move constructor and move assignment operator in the unique_ptr class
+When the unique_ptr object goes out of scope, memory of the recource is released in unique_ptr destuctor
