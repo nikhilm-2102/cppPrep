@@ -1,4 +1,4 @@
-unique_ptr
+>> unique_ptr
 unique_ptr works with single ownership model. Only one pointer at a time can access the resource.
 We can not assign one unique_ptr to another as copy constructor and assignment operator is deleted from the unique_ptr class
 We can move the ownership from one unique_ptr to another using std::move() and this is done because of the move constructor and move assignment operator in the unique_ptr class
@@ -32,7 +32,7 @@ int main() {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-shared_ptr
+>> shared_ptr
 Unlike unique ptr, shared ptr allows us to share the resource among multiple shared pointers.
 Shared_ptr class internally maintains the referece count. 
 When one shared ptr is assigned to another then reference count gets increased.
@@ -53,7 +53,7 @@ int main() {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-weak_ptr
+>> weak_ptr
 
 A std::weak_ptr is a non-owning smart pointer that refers to a std::shared_ptr without increasing its reference count.
 With shared_ptr we can share the resorces with multiple shared_ptr's but there is a chance of cyclic dependency.
@@ -92,5 +92,35 @@ int main() {
 
 Before using a weak_ptr, you must convert it into a shared_ptr using .lock().
 shared_ptr<Sample> s3 = s1->m_weakPtr.lock();
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+>> Move Semantics
+
+what is lvalue and rvalue?
+lvalue - usually left side of the assignment for which memory is allocated
+rvalue - right side of the assignment for which memory is not allocated
+For example - 
+int x = 10;
+Here x is lvalue and 10 is the rvalue
+
+What is the benefit of move semantics?
+
+Using move semantics we can avoid unnecessary copies or unnecessary calls to copy constructor and assignment operators 
+and because of this we can avoid unnecessary memory allocation for the temporary objects.
+
+How it can be achieved?
+It can be achieved by using move constructor and move assignment operator.
+also we can use std::move() to convert lvalue to rvalue
+
+
+
+
+
+
+
+
+
+
 
 
