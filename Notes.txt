@@ -3,3 +3,94 @@ unique_ptr works with single ownership model. Only one pointer at a time can acc
 We can not assign one unique_ptr to another as copy constructor and assignment operator is deleted from the unique_ptr class
 We can move the ownership from one unique_ptr to another using std::move() and this is done because of the move constructor and move assignment operator in the unique_ptr class
 When the unique_ptr object goes out of scope, memory of the recource is released in unique_ptr destuctor
+
+Declaration - 
+unique_ptr<int> ptr(new int(10));
+Or
+unique_ptr<int> ptr = make_unique<int>(10);
+
+For User defined class 
+unique_ptr<sample> ptr(new sample());
+Or
+unique_ptr<sample> ptr = make_unique<sample>();
+
+#include <iostream>
+#include <memory>
+
+class Resource {
+public:
+    Resource() { std::cout << "Resource acquired\n"; }
+    ~Resource() { std::cout << "Resource destroyed\n"; }
+};
+
+int main() {
+    std::unique_ptr<Resource> ptr1 = std::make_unique<Resource>();
+    // std::unique_ptr<Resource> ptr2 = ptr1; // Error! Copying is not allowed
+    std::unique_ptr<Resource> ptr2 = std::move(ptr1); // Ownership transferred
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+shared_ptr
+Unlike unique ptr, shared ptr allows us to share the resource among multiple shared pointers.
+Shared_ptr class internally maintains the referece count. 
+When one shared ptr is assigned to another then reference count gets increased.
+when any shared ptr object goes out of scope then count is decremneted and object is destroyes only when last shared_ptr goes out of scope.
+
+class Resource {
+public:
+    Resource() { std::cout << "Resource acquired\n"; }
+    ~Resource() { std::cout << "Resource destroyed\n"; }
+};
+
+int main() {
+    std::shared_ptr<Resource> ptr1 = std::make_shared<Resource>();
+    std::shared_ptr<Resource> ptr2 = ptr1;
+    std::cout << "Reference count: " << ptr1.use_count() << std::endl;
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+weak_ptr
+
+A std::weak_ptr is a non-owning smart pointer that refers to a std::shared_ptr without increasing its reference count.
+With shared_ptr we can share the resorces with multiple shared_ptr's but there is a chance of cyclic dependency.
+Due to which reference count will not be zero and object will not be destroyed.
+
+Example of cyclic dependency - 
+class sample
+{
+public:
+	shared_ptr<sample> m_sharedPtr;
+};
+
+int main()
+{
+	shared_ptr<sample> s1(new sample());
+	shared_ptr<sample> s2(new sample());
+	s1->m_sharedPtr = s2;
+	s2->m_sharedPtr = s1;
+}
+
+We can recolve it by using weak_ptr - 
+class Sample {
+public:
+    std::weak_ptr<Sample> m_weakPtr; // Use weak_ptr to prevent cyclic dependency
+};
+
+int main() {
+    std::shared_ptr<Sample> s1 = std::make_shared<Sample>();
+    std::shared_ptr<Sample> s2 = std::make_shared<Sample>();
+    
+    s1->m_weakPtr = s2; // Weak reference, doesn't increase ref count
+    s2->m_weakPtr = s1; // Weak reference, doesn't increase ref count
+
+    return 0;
+}
+
+Before using a weak_ptr, you must convert it into a shared_ptr using .lock().
+shared_ptr<Sample> s3 = s1->m_weakPtr.lock();
+
+
