@@ -121,7 +121,10 @@ std::move	- Converts lvalue to rvalue, enabling move operations.
 Use Case	- Moving large objects like std::vector to avoid unnecessary memory allocation.
 
 
-
+Where is Move Semantics Useful?
+Returning large objects from functions (avoid unnecessary copies).
+Transferring ownership of dynamically allocated resources.
+Performance optimization in STL containers like std::vector, std::string, std::unique_ptr.
 
 
 
