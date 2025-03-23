@@ -113,7 +113,12 @@ How it can be achieved?
 It can be achieved by using move constructor and move assignment operator.
 also we can use std::move() to convert lvalue to rvalue
 
-
+Concept	Explanation
+lvalue	- Has a persistent memory address, can be assigned (int x = 10;).
+rvalue	- Temporary, cannot be assigned (10 in int x = 10;).
+Move Constructor	- Transfers ownership, avoids deep copy (Test(Test&&)), nullifies the source.
+std::move	- Converts lvalue to rvalue, enabling move operations.
+Use Case	- Moving large objects like std::vector to avoid unnecessary memory allocation.
 
 
 
