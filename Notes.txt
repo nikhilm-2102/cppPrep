@@ -126,6 +126,79 @@ Returning large objects from functions (avoid unnecessary copies).
 Transferring ownership of dynamically allocated resources.
 Performance optimization in STL containers like std::vector, std::string, std::unique_ptr.
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Variadic Templates in C++
+Variadic templates allow a function or class to accept a variable number of template arguments. They enable writing flexible and reusable code without specifying the exact number of parameters in advance.
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+std::map and std::unordered_map are both associative containers but differ in their internal implementations:
+
+1. **Data Structure:**
+   - `std::map` is implemented as a **Red-Black Tree** (self-balancing BST).
+   - `std::unordered_map` is implemented using **Hash Tables**.
+
+2. **Sorting:**
+   - `std::map` stores keys in **sorted order** (increasing order by default).
+   - `std::unordered_map` **does not sort** keys; they appear in an **arbitrary order**.
+
+3. **Time Complexity:**
+   - `std::map`: **O(log n)** for insert, find, and erase (due to tree traversal).
+   - `std::unordered_map`: **O(1) average, O(n) worst-case** (due to hash collisions).
+
+4. **Memory Usage:**
+   - `std::unordered_map` consumes **more memory** because of hash tables and bucket allocations.
+   - `std::map` is **more memory-efficient**.
+
+5. **When to Use Which?**
+   - Use `std::map` when **sorted keys** or **range-based operations** are needed. Such as lower_bound and upper_bound
+   - Use `std::unordered_map` for **faster lookups** when ordering is not required.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+std::vector is a dynamic array stored in contiguous memory, allowing fast random access (O(1)) but slower insertions/deletions in the middle (O(n)).
+
+std::list is a doubly linked list, allowing fast insertions and deletions (O(1)) at arbitrary positions but slow access (O(n)).
+
+Use vector when: Frequent access is needed, and insertions/deletions happen mostly at the end.
+
+Use list when: Frequent insertions/deletions at arbitrary positions are needed, and random access is not required.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+What are the advantages of std::array over std::vector? When would you prefer using std::array instead of std::vector?
+
+✅ Correct: std::array is preferable when the number of elements is fixed at compile time, whereas std::vector is used when the size can change dynamically.
+🔍 Additional Key Differences:
+
+Memory Allocation:
+
+std::array is allocated on the stack, making it more efficient and avoiding heap allocations.
+
+std::vector dynamically allocates memory on the heap, which incurs some performance overhead.
+
+Performance:
+
+std::array provides faster access due to cache locality since its elements are stored contiguously on the stack.
+
+std::vector has some extra overhead due to dynamic memory management and potential reallocation.
+
+Size Safety:
+
+std::array has a fixed size that cannot change at runtime, making it less error-prone in cases where the size is known beforehand.
+
+std::vector supports dynamic resizing (push_back, resize), which makes it more flexible.
+
+Use Cases:
+
+Use std::array when size is known at compile time and you want better performance and memory efficiency.
+
+Use std::vector when size may change at runtime or when heap allocation is acceptable.
+
+
+
 
 
 
