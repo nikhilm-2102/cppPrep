@@ -74,7 +74,7 @@ int main()
 	s2->m_sharedPtr = s1;
 }
 
-We can recolve it by using weak_ptr - 
+We can resolve it by using weak_ptr - 
 class Sample {
 public:
     std::weak_ptr<Sample> m_weakPtr; // Use weak_ptr to prevent cyclic dependency
@@ -196,6 +196,18 @@ Use Cases:
 Use std::array when size is known at compile time and you want better performance and memory efficiency.
 
 Use std::vector when size may change at runtime or when heap allocation is acceptable.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Upcasting - Converting derived class type to base class type is called as upcasting
+This is also known as static_cast or compile time cast
+Example - 
+Employee* emp = new Salesperson(100,5);
+Here converted derived class type to base class type 
+
+Downcasting / dynamic_cast / run time casting - 
+Converting derived class type into base class type
+Employee* emp = new Salesperson(100,5);
+SalesPerson* sp = dynamic_cast<SalesPerson*>(emp);
 
 
 
