@@ -33,6 +33,7 @@ class buffer
     {
         std::cout << "move constructor\n";
         data = rref.data;
+        size = rref.size;
         rref.data = nullptr;
         rref.size = 0;
     }
@@ -44,6 +45,7 @@ class buffer
         {
             delete[] data;
             data = rref.data;
+            size = rref.size;
             rref.data = nullptr;
             rref.size = 0;
         }
