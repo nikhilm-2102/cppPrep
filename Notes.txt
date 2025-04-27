@@ -209,6 +209,37 @@ Converting derived class type into base class type
 Employee* emp = new Salesperson(100,5);
 SalesPerson* sp = dynamic_cast<SalesPerson*>(emp);
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Difference between pointers and reference 
+
+1. Pointer is an identifier for a memory location which stores an address of another type as its value.
+1. Reference is alias name for already declared variable.
+
+int var = 10;
+int* ptr = &var;
+
+int& ref = var;
+
+2. Pointers can be null and it can be initialized later
+2. References must be initialized at the time of declaration and it can not be null.
+
+int* ptr = nullptr;
+int& ref; // Error
+int& ref = NULL; // error
+
+3. Pointers can be reassigned while references cant
+
+int* ptr = &var;
+int var2 = 20;
+ptr = &var2;
+
+int& ref = var;
+ref = var2; // This will not start pointing to the var2 instead of that it changes value of var to 20
+
+4. to access the value we need to use * operator and to access the member we need to use -> operator with pointers
+4. No need to use * or -> operator with reference
+
+
 
 
 
