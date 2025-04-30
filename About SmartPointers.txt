@@ -1,0 +1,90 @@
+✅ Smart Pointers in C++
+Smart pointers are wrappers around raw pointers that automatically manage memory and help avoid memory leaks, dangling pointers, and double-deletion issues.
+
+They are defined in the <memory> header and include:
+
+📌 Types:
+std::unique_ptr
+
+std::shared_ptr
+
+std::weak_ptr
+
+✅ 1. std::unique_ptr
+📎 Ownership: Sole owner of the object.
+Cannot be copied, only moved.
+
+Very lightweight.
+
+🔧 When to Use:
+When you want exclusive ownership, like managing a resource in a class or scope.
+
+🧪 Example:
+std::unique_ptr<MyClass> ptr = std::make_unique<MyClass>();
+
+
+🔑 Key Functions:
+get() – returns raw pointer
+
+release() – releases ownership and returns raw pointer
+
+reset() – deletes current object and takes new one
+
+operator* / operator-> – access the underlying object
+
+⚠️ Tip:
+Best for performance. Always prefer make_unique<T>() over direct new.
+
+✅ 2. std::shared_ptr
+📎 Ownership: Shared among multiple owners via reference counting.
+When the last owner is destroyed, the object is deleted.
+
+🔧 When to Use:
+When multiple parts of code need shared ownership of a resource (e.g., in graph, tree structures, or event systems).
+
+🧪 Example:
+std::shared_ptr<MyClass> ptr1 = std::make_shared<MyClass>();
+std::shared_ptr<MyClass> ptr2 = ptr1;  // Reference count increased
+
+🔑 Key Functions:
+use_count() – shows number of shared owners
+
+unique() – true if this is the only owner
+
+reset() – clears the pointer
+
+get() – raw pointer access
+
+⚠️ Tip:
+Avoid circular references — they will cause memory leaks.
+
+✅ 3. std::weak_ptr
+📎 Ownership: Non-owning reference to a shared_ptr object.
+Does not increase reference count.
+
+🔧 When to Use:
+To break circular references in shared_ptr, such as in parent-child relationships.
+
+🧪 Example:
+std::shared_ptr<MyClass> shared = std::make_shared<MyClass>();
+std::weak_ptr<MyClass> weak = shared;
+To use it:
+if (auto temp = weak.lock()) {
+    temp->doSomething();
+}
+🔑 Key Functions:
+lock() – returns a shared_ptr if object still exists
+
+expired() – returns true if object is deleted
+
+reset() – releases the weak reference
+
+⚠️ Tip:
+weak_ptr is often used in observer patterns and caching.
+
+🧠 Summary Table
+
+Smart Pointer	| Ownership	| Thread Safe	| Key Use Case                 |	Key Functions
+unique_ptr	  | Exclusive	|   Yes	      |Single-owner objects	         | get(), release(), reset()
+shared_ptr	  | Shared	  |   Yes	      |Shared ownership 	           | use_count(), reset()
+weak_ptr	    | Non-owning|	  Yes	      |Breaking cycles in shared_ptr |	lock(), expired()
