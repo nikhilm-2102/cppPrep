@@ -1,0 +1,9 @@
+| Time Complexity | Meaning             | Real Life Example                                | Sorting Algorithms           |
+|-----------------|---------------------|--------------------------------------------------|------------------------------|
+| O(1)            | Constant             | Grabbing a pen from the same drawer             | ❌ None                      |
+| O(log n)        | Logarithmic         | Finding a word in a dictionary                   | Binary Search (not sorting)  |
+| O(n)            | Linear              | Checking each notebook                           | Counting, Radix, Bucket     |
+| O(n log n)      | Log-linear          | Divide and conquer sorting                       | Merge, Quick, Heap          |
+| O(n²)           | Quadratic           | Comparing each student with all others           | Bubble, Selection, Insertion|
+| O(2ⁿ)           | Exponential         | Trying every light switch combination            | ❌ Not for sorting           |
+| O(n!)           | Factorial           | Trying all ways to seat 10 people                | ❌ Not for sorting           |
