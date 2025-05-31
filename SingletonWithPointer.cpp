@@ -31,7 +31,9 @@ class Singleton
     {
         cout << "Hello\n";
     }
-    
+
+// Its not good idea to delete instance in destructor as due to this there is a chance of double deletion because delete instace ; this will be recursive call to the destructor
+// So instead of this add a memothod destoryInstance() to delete instance
     ~Singleton()
     {
         if (instance)
