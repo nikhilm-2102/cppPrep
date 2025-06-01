@@ -1,4 +1,3 @@
-// Online C++ compiler to run C++ program online
 #include <iostream>
 
 class buffer
@@ -16,6 +15,8 @@ class buffer
     {
         size = rBuffer.size;
         data = new int[size];
+        for (int i = 0; i < size; ++i)
+            data[i] = rBuffer.data[i];
     }
     
     buffer& operator=(const buffer& rBuffer)
@@ -25,6 +26,8 @@ class buffer
             delete[] data;
             size = rBuffer.size;
             data = new int[size];
+            for (int i = 0; i < size; ++i)
+                data[i] = rBuffer.data[i];
         }
         return *this;
     }
