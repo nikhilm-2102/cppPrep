@@ -84,7 +84,7 @@ weak_ptr is often used in observer patterns and caching.
 
 🧠 Summary Table
 
-Smart Pointer	| Ownership	| Thread Safe	| Key Use Case                 |	Key Functions
-unique_ptr	  | Exclusive	|   Yes	      |Single-owner objects	         | get(), release(), reset()
-shared_ptr	  | Shared	  |   Yes	      |Shared ownership 	           | use_count(), reset()
-weak_ptr	    | Non-owning|	  Yes	      |Breaking cycles in shared_ptr |	lock(), expired()
+Smart Pointer         | Ownership	  | Thread Safe	    | Key Use Case                     |	Key Functions
+unique_ptr            | Exclusive     |   Yes	        | Single-owner objects	           | get(), release(), reset()
+shared_ptr	          | Shared	      |   Yes	        | Shared ownership 	               | use_count(), reset()
+weak_ptr	          | Non-owning    |	  Yes	        | Breaking cycles in shared_ptr    |	lock(), expired()
