@@ -1,5 +1,4 @@
 // below code represents why and in which situation there is a need of strategy design pattern - 
-// Online C++ compiler to run C++ program online
 #include <iostream>
 using namespace std;
 
@@ -96,9 +95,6 @@ int main() {
 in case of dymanic behavior */
 /* Strategy design pattern helps to provide dynamic behavior by empower a class with an dynamic behavior object. This means the class has a member which choses the dynamic behavior*/
 
-
-
-// Online C++ compiler to run C++ program online
 #include <iostream>
 using namespace std;
 
