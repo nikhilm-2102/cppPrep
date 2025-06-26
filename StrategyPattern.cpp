@@ -7,7 +7,7 @@ using namespace std;
 // Without strategy design pattern only by using inheritance we can achive same thing but
 // it will need to create a seperate derived class every time
 
-// Example withour strategy design pattern
+// Example without strategy design pattern
 // Consider we have different warriors and each have different attack strategy
 // warriors can attack using sword / gun / fire etc..
 // If we think to go ahead only with inheritance
@@ -93,7 +93,8 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 /* As per the design in the above example we chosen to go with an inheritance but code become complicated and need of introduce a new derived class
 in case of dymanic behavior */
-/* Strategy design pattern helps to provide dynamic behavior by empower a class with an dynamic behavior object. This means the class has a member which choses the dynamic behavior*/
+/* Strategy design pattern helps to provide dynamic behavior by empower a class with an dynamic behavior object. This means the class has a 
+member which choses the dynamic behavior*/
 
 #include <iostream>
 using namespace std;
